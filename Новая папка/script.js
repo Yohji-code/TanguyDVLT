@@ -9,7 +9,7 @@ function enterFullScreen(element) {
       element.msRequestFullscreen();
     }
   }
-  document.querySelectorAll('.body img').forEach(img => {
+  document.querySelectorAll('.body1 img').forEach(img => {
     img.addEventListener('click', function() {
       enterFullScreen(this);
     });
@@ -44,3 +44,24 @@ function enterFullScreen(element) {
       modal.style.display = "none";
     }
   };
+ function sendData() {
+    var xhr = new XMLHttpRequest();
+    var url = 'script.php'; // URL скрипта на сервере для обработки данных
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  
+    // Получаем данные из формы
+    var data = document.getElementById('dataInput').value;
+  
+    // Отправляем данные
+    xhr.send('data=' + encodeURIComponent(data));
+  
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        alert('Данные успешно отправлены');
+        // Очищаем форму после отправки
+        document.getElementById('dataInput').value = '';
+      }
+    };
+  }
+  
