@@ -44,24 +44,73 @@ function enterFullScreen(element) {
       modal.style.display = "none";
     }
   };
- function sendData() {
-    var xhr = new XMLHttpRequest();
-    var url = 'script.php'; // URL скрипта на сервере для обработки данных
-    xhr.open('POST', url, true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  var modal1 = document.getElementById("myModal1");
+  var btn1 = document.getElementById("modalBtn1");
+  var span1 = document.getElementsByClassName("close1")[0];
   
-    // Получаем данные из формы
-    var data = document.getElementById('dataInput').value;
-  
-    // Отправляем данные
-    xhr.send('data=' + encodeURIComponent(data));
-  
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-        alert('Данные успешно отправлены');
-        // Очищаем форму после отправки
-        document.getElementById('dataInput').value = '';
-      }
-    };
+  // Когда пользователь кликает на картинку, открываем модальное окно
+  btn1.onclick = function() {
+    modal1.style.display = "block";
   }
   
+  // Когда пользователь кликает на (x), закрываем модальное окно
+  span1.onclick = function() {
+    modal1.style.display = "none";
+  }
+  
+  // Когда пользователь кликает в любом месте за пределами модального окна, закрываем его
+  window.onclick = function(event) {
+    if (event.target == modal1) {
+      modal1.style.display = "none";
+    }
+  };
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+  
+  function appendToLocalStorage() {
+    // Получаем текущий текст из textarea
+    var newText = document.getElementById('inputText').value;
+    // Проверяем, не пустая ли строка
+    if (newText.trim() !== '') {
+      // Преобразуем первый символ в верхний регистр
+      newText = capitalizeFirstLetter(newText);
+      // Получаем уже сохранённый текст из localStorage
+      var existingText = localStorage.getItem('myText') || '';
+      // Объединяем существующий текст с новым текстом, добавляя перенос строки
+      var combinedText = existingText + (existingText ? '\n' : '') + newText;
+      // Сохраняем объединённый текст в localStorage с ключом 'myText'
+      localStorage.setItem('myText', combinedText);
+    }
+    // Очищаем textarea
+    document.getElementById('inputText').value = '';
+  }
+  
+  function loadFromLocalStorage() {
+    // Получаем текст из localStorage
+    var text = localStorage.getItem('myText');
+    // Проверяем, не пустая ли строка
+    if (text) {
+      // Разделяем текст на строки
+      var lines = text.split('\n');
+      // Очищаем displayText
+      document.getElementById('displayText').innerHTML = '';
+      lines.forEach(function(line) {
+        var div = document.createElement('div');
+        div.textContent = line;
+        div.style.border = '2px solid black';
+        div.style.borderRadius = '5px'
+        div.style.marginBottom = '20px';
+        div.style.padding = '10px'; 
+        div.style.backgroundColor = 'white';
+        document.getElementById('displayText').appendChild(div);
+      });
+    }
+  }
+  
+  // Добавляем слушатель событий на кнопку для вызова функции добавления текста
+  document.getElementById('click2').addEventListener('click', appendToLocalStorage);
+  
+  // Вызываем функцию загрузки при загрузке страницы, чтобы восстановить текст
+  window.onload = loadFromLocalStorage;

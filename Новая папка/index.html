@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 <link rel="stylesheet" href="style.css">
+<link rel="preload" href="Imbue.woff2" as="font">
 
 </head>
 <body>
@@ -44,9 +45,9 @@
                             <div class="modal-content">
                                 <span class="close">&times;</span>
                                 <form id="myForm">
-                                <p style="text-align: center;">Запись на фотосессию</p>
-                                <input type="text" id="dataInput" placeholder="@UserName(tg)">
-                                <button type="submit" onclick="sendData()">Отправить</button>
+                                <p style="text-align: center; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Запись на фотосессию</p>
+                                <input style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"type="text" id="dataInput" placeholder="@UserName(tg)">
+                                <button style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; "type="submit" id="click1" onclick="sendData()">Отправить</button>
                             </form>
                             </div>
                         
@@ -111,6 +112,26 @@
                 <img src="THANKS FOR WATCHING ;).png">
             </div>
         </div>
+            <div class="content1">
+                <img src="1670985846_grizly-club-p-ikonka-otzivi-png-6.png" style="height: 80px; width: 80px; margin-left: 15px;" alt="Открыть форму" id="modalBtn1">
+            </div>
+            <div id="myModal1" class="modal1">
+                    <!-- Содержимое модального окна -->
+                <div class="modal-content1">
+                    <span class="close1">&times;</span>
+                    <p style="text-align: center; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 30px;">Оставить отзыв</p>
+                    <form id="myForm1">
+                    <p style="margin-left: 35px; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 20px;">Текст отзыва:</p>
+                    <textarea id="inputText" style="margin-left: 35px; border-radius: 10px; padding:5px; width: 290px; height: 100px; resize: none; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 20px;"></textarea></br>
+                    <button type="button" id="click2"  style="margin-left: 35px; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 18px;">Отправить</button>
+                    </form>
+                    <p style="text-align: center; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 30px; margin-top: -20px;">Отзывы</p>
+                    <div class="otz">
+                        <p id="displayText" style="margin-left: 5px; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 18px;"></p>
+                    </div>
+                    <br style="clear: both">
+                </div>
+            </div>
     </div>
     <script src="script.js"></script>
 </body>
